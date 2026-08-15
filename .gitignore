@@ -17,6 +17,7 @@
 /.next/
 /.next-stale*/
 /out/
+/.amplify-static-api-hold/
 *.zip
 
 # production

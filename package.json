@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "node scripts/build-static.mjs",
+    "package:amplify": "python scripts/package-amplify-static.py",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
