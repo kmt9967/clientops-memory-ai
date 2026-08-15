@@ -3,6 +3,7 @@
 - [x] New isolated project
 - [x] Synthetic demo only
 - [x] CockroachDB database, relational schema, VECTOR column, vector index
+- [x] Second CockroachDB tool: official Agent Skills Repo, project-local and applied
 - [x] Live Titan embedding and paraphrased vector query
 - [x] Live Nova Lite runtime check
 - [x] Memory agent, timeline, explorer, decisions, tasks, evidence, architecture
@@ -10,9 +11,9 @@
 - [x] 16 automated tests; 10 evaluation scenarios
 - [x] Production build, lint, audit
 - [x] README, MIT license, docs, submission copy, demo script
-- [ ] Public GitHub URL
-- [ ] Public AWS deployment and signed-out verification
-- [ ] Final sanitized screenshots and SHA-256 manifest
+- [x] Public GitHub URL: https://github.com/kmt9967/clientops-memory-ai
+- [x] Public AWS deployment: https://main.dmr37ghkod94i.amplifyapp.com (no app authentication)
+- [x] Final sanitized screenshots and SHA-256 manifest
 - [ ] Public under-three-minute YouTube/Vimeo video
-- [ ] Devpost draft populated
+- [x] Devpost draft populated (not submitted)
 - [ ] Human authorization before final Devpost submit

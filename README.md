@@ -41,7 +41,9 @@ Conflicts are surfaced instead of silently merged. Historical decisions remain q
 
 ## CockroachDB
 
-CockroachDB is the system of record, not a logging sidecar. The `clientops_memory` database contains 11 tables for workspaces, users, clients, conversations, messages, memories, embeddings, decisions, tasks, links, agent runs, and retrieval events (the latter two are operational trace tables). `VECTOR(1024)` stores Titan embeddings; `CREATE VECTOR INDEX` enables distributed approximate search; cosine distance (`<=>`) ranks paraphrased queries. The live cluster migration and a real paraphrased vector query are documented in [docs/cockroachdb-implementation.md](docs/cockroachdb-implementation.md).
+CockroachDB is the system of record, not a logging sidecar. The `clientops_memory` database contains 12 tables for workspaces, users, clients, conversations, messages, memories, embeddings, decisions, tasks, links, agent runs, and retrieval events (the latter two are operational trace tables). `VECTOR(1024)` stores Titan embeddings; `CREATE VECTOR INDEX` enables distributed approximate search; cosine distance (`<=>`) ranks paraphrased queries. The live cluster migration and a real paraphrased vector query are documented in [docs/cockroachdb-implementation.md](docs/cockroachdb-implementation.md).
+
+The project also uses Cockroach Labs’ official Agent Skills repository. The checked-in `cockroachdb-sql` and `designing-application-transactions` skills guided the Cockroach-native schema review and the short, retry-safe transaction that atomically records each agent run with its retrieval trace. See [docs/cockroachdb-agent-skills.md](docs/cockroachdb-agent-skills.md).
 
 CockroachDB Managed MCP is an optional administrative surface for schema inspection and diagnostics. No database credentials are committed or exposed.
 
@@ -88,12 +90,14 @@ npm audit
 
 ## Deployment
 
-Build with `npm run build` and deploy the Next.js server to an AWS service with temporary-role access to Bedrock and the four environment variables above. See [docs/deployment.md](docs/deployment.md).
+Live public demo: **https://main.dmr37ghkod94i.amplifyapp.com**
+
+The Amplify deployment is the credential-free static judging demo. Build with `npm run build` and deploy the checked-in Next.js server routes to an AWS compute service with a temporary runtime role for Bedrock and the four environment variables above to enable the live server-backed path. See [docs/deployment.md](docs/deployment.md).
 
 ## Known limitations
 
 - The browser-only demo persists synthetic memory in local storage so the complete judging flow remains explorable before cloud credentials are attached; the UI and `/api/health` disclose demo/degraded mode.
-- Managed MCP setup depends on CockroachDB Cloud authorization and is not required by the indexed hackathon rules.
+- MCP is not used or claimed; the second CockroachDB tool is the official Agent Skills repository.
 - The live vector smoke test currently contains one embedded demo memory; production seeding should embed every record.
 
 ## Hackathon disclosure

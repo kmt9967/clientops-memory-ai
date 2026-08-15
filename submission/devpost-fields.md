@@ -2,9 +2,12 @@
 
 **Project name:** ClientOps Memory AI  
 **Tagline:** An AI operations agent with persistent organizational memory.  
-**Built with:** Next.js, TypeScript, React, CockroachDB Cloud, CockroachDB VECTOR index, Amazon Bedrock, Amazon Nova Lite, Amazon Titan Text Embeddings V2, AWS SDK, Zod  
-**Source:** `PUBLIC_GITHUB_URL`  
-**Demo:** `PUBLIC_AWS_URL`  
+**Built with:** Next.js, TypeScript, React, CockroachDB Cloud, CockroachDB Distributed Vector Indexing, CockroachDB Agent Skills Repo, Amazon Bedrock, Amazon Nova Lite, Amazon Titan Text Embeddings V2, AWS Amplify, AWS SDK, Zod
+
+**Source:** https://github.com/kmt9967/clientops-memory-ai
+
+**Demo:** https://main.dmr37ghkod94i.amplifyapp.com
+
 **Video:** `PUBLIC_YOUTUBE_OR_VIMEO_URL`
 
 ## Inspiration
@@ -14,7 +17,7 @@ Agencies repeatedly lose the reasoning behind client decisions as work moves acr
 ClientOps extracts typed memory, reconciles conflicts, persists provenance, retrieves relevant history across sessions, and cites the evidence that shaped each answer.
 
 ## How we built it
-CockroachDB stores relational truth plus Titan embeddings in `VECTOR(1024)` with a distributed vector index. A Next.js agent API uses Bedrock for embeddings and grounded reasoning, then records retrieval traces and agent runs.
+CockroachDB stores relational truth plus Titan embeddings in `VECTOR(1024)` with a distributed vector index. The official CockroachDB Agent Skills repository guided schema validation and the retry-safe transaction that atomically records retrieval traces and agent runs. A Next.js agent API uses Bedrock for embeddings and grounded reasoning.
 
 ## Challenges
 Preserving historical truth while applying new instructions required explicit superseding relationships, status-aware ranking, and user-visible evidence rather than mutating prior decisions.

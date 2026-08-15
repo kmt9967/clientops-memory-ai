@@ -1,5 +1,5 @@
 import "server-only";
-import { Pool } from "pg";
+import { Pool, type PoolClient } from "pg";
 
 let pool: Pool | undefined;
 
@@ -13,6 +13,26 @@ export async function healthcheck() {
   const started = performance.now();
   const result = await getPool().query("SELECT current_database() AS database, version() AS version");
   return { ...result.rows[0], durationMs: Math.round(performance.now() - started) };
+}
+
+export async function withTransaction<T>(work: (client: PoolClient) => Promise<T>, maxAttempts = 3) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const client = await getPool().connect();
+    try {
+      await client.query("BEGIN");
+      const result = await work(client);
+      await client.query("COMMIT");
+      return result;
+    } catch (error) {
+      await client.query("ROLLBACK").catch(() => undefined);
+      const retryable = typeof error === "object" && error !== null && "code" in error && error.code === "40001";
+      if (!retryable || attempt === maxAttempts) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 40 * 2 ** (attempt - 1) + Math.random() * 40));
+    } finally {
+      client.release();
+    }
+  }
+  throw new Error("Transaction retry budget exhausted");
 }
 
 export async function semanticSearch(workspaceId: string, embedding: number[], limit = 6) {
