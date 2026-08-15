@@ -1,0 +1,31 @@
+1
+00:00:00,000 --> 00:00:18,000
+Client decisions get scattered across conversations, tasks, and staff handoffs.
+
+2
+00:00:18,000 --> 00:00:34,000
+ClientOps Memory AI turns those fragments into persistent organizational memory.
+
+3
+00:00:34,000 --> 00:00:58,000
+One instruction becomes typed assignment, decision, and commitment memories.
+
+4
+00:00:58,000 --> 00:01:18,000
+A new session retrieves the decision from CockroachDB and cites its evidence.
+
+5
+00:01:18,000 --> 00:01:38,000
+Titan embeddings and CockroachDB vector search find paraphrased operational context.
+
+6
+00:01:38,000 --> 00:02:04,000
+New guidance supersedes the old rule without erasing history.
+
+7
+00:02:04,000 --> 00:02:24,000
+Confidence, sources, timestamps, corrections, and inference labels make memory accountable.
+
+8
+00:02:24,000 --> 00:02:42,000
+Amazon Bedrock reasons over durable CockroachDB memory so every next action starts with context.
